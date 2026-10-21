@@ -268,8 +268,8 @@ const PROJECTS = [
       { t: "Logo Design", blocks: [
         // held while scrolling, as Woktok: each point is drawn out from its name to the letter
         { lgp: { before: B + "before.png", mark: B + "logo-mark.svg", guide: B + "logo-guide.svg", ratio: "1081 / 340", bg: "var(--pc)", alt: ["The old Banila Co logo", "The new Banilaco logo"],
-                 points: [["Symbol", "The old signature circle, set small inside the B, carries the symbol's identity forward.", "l", ["M18.8 -26 V9"], [[18.8, 12.6]]],
-                          ["Wordmark", "A typeface between serif and sans, so **past and present live together.**", "r", ["M84 -26 V25"], [[84, 29]]]],
+                 points: [["Symbol", "The old signature circle, set small inside the B, carries the symbol's identity forward.", "l", ["M18.8 T V9"], [[18.8, 12.6]]],
+                          ["Wordmark", "A typeface between serif and sans, so **past and present live together.**", "r", ["M84 T V25"], [[84, 29]]]],
                  spec: [["Clear space", "x = 2 mm", B + "space.svg", B + "space-x.svg"], ["Minimum size", "4 mm for print, 24 px for screen", B + "min-size.svg"]] } },
       ] },
       { t: "Brand Slogan", blocks: [
@@ -383,7 +383,7 @@ const PROJECTS = [
         // held while scrolling: each point of the logo is drawn out in turn, as in the PDF.
         // points: [title, text, side, dashed lines (in % of the logo), dotted rings]
         { lgp: { mark: W + "logo.svg", ratio: "1230 / 266", alt: "The Woktok logo",
-                 points: [["Points", "Two neat paws in the W; a dog's face in the T.", "l", ["M-4 -40 V81 H0", "M26 -40 H61 V25"], [[0, 81], [61, 25]]],
+                 points: [["Points", "Two neat paws in the W; a dog's face in the T.", "l", ["M-4 T V81 H0", "M26 T H61 V25"], [[0, 81], [61, 25]]],
                           ["Round", "Round ends for a soft look; a bouncy step in the bend of the K.", "r", [], [[87.6, 2], [95.9, 25.6]]]],
                  spec: [["Clear space", "x = 4 mm", W + "space.svg", W + "space-x.svg"], ["Minimum size", "4 mm for print, 24 px for screen", W + "min-size.svg"]] } },
       ] },

@@ -310,7 +310,8 @@ function block(b) {
     const L = b.lgp, n = L.points.length, id = "lgp" + (lgpN++);
     let k = 0;
     const lines = L.points.map(([, , , ds], i) => ds.map((d) => { const m = `${id}-${k++}`;
-      return `<mask id="${m}" maskUnits="userSpaceOnUse" x="-50" y="-100" width="200" height="300"><path class="lgp-k" data-st="${i}" d="${d}" pathLength="1"/></mask><path data-st="${i}" d="${d}" mask="url(#${m})"/>`; }).join("")).join("");
+      // T in a path is the top of the line: just under the text above the logo, set by fitLines() once laid out
+      return `<mask id="${m}" maskUnits="userSpaceOnUse" x="-50" y="-400" width="200" height="600"><path class="lgp-k" data-ln="${i}" data-d="${d}" pathLength="1"/></mask><path data-d="${d}" mask="url(#${m})"/>`; }).join("")).join("");
     return `<div class="bk lgp" data-s="pin" data-k="steps" data-n="${n}" style="--n:${n}"><div class="lgp-in bleed"${L.bg ? ` style="background:${L.bg}"` : ""}>
       ${L.before ? `<figure class="lg-b lgp-b"><figcaption>Before</figcaption>${pic(L.before, L.alt[0])}</figure>` : ""}
       ${L.points.map(([h, t, side], i) => `<div class="lgp-t lgp-${side}" data-st="${i}"><b>${h}</b><p>${md(t)}</p></div>`).join("")}
@@ -484,11 +485,13 @@ const SCENE = {
   },
   // held in place; the marked parts come on one per stretch of scroll
   steps(el, p) {
-    if (!wide.matches) return;
+    el._ln ??= [...el.querySelectorAll(".lgp-k")];
+    el._ro ??= [...el.querySelectorAll(".lgp-o")];
+    if (!wide.matches) { for (const x of el._ln) x.style.strokeDashoffset = ""; el._k = 0; return; }
     const n = +el.dataset.n, q = clamp(p * 1.15) * n, k = Math.min(n, Math.floor(q) + 1);
-    // logo lines draw out with the scroll; each ring comes on once its line has reached it
-    el.querySelectorAll(".lgp-k").forEach((x) => { x.style.strokeDashoffset = 1 - clamp((q - x.dataset.st) / 0.6); });
-    el.querySelectorAll(".lgp-o").forEach((x) => x.classList.toggle("on", q - x.dataset.ro >= +x.dataset.w));
+    // logo lines draw out with the scroll; each ring comes on once its line has reached it (a ring with no line, once its step starts)
+    for (const x of el._ln) x.style.strokeDashoffset = 1 - clamp((q - x.dataset.ln) / 0.6);
+    for (const x of el._ro) x.classList.toggle("on", q - x.dataset.ro > +x.dataset.w);
     if (el._k === k) return;
     el._k = k;
     el.querySelectorAll("[data-st]").forEach((x) => x.classList.toggle("on", +x.dataset.st < k));
@@ -569,14 +572,24 @@ const seen = "IntersectionObserver" in window ? new IntersectionObserver((es) =>
   e.target.classList.add("in");
   count(e.target);
 }), { root: detail, rootMargin: "0px 0px -15% 0px", threshold: 0.3 }) : null;
-function sizeStrips() {}
+// a logo line starts just under the lowest text above the logo, whatever the width
+function fitLines() {
+  art.querySelectorAll(".lgp-m").forEach((m) => {
+    const r = m.getBoundingClientRect();
+    if (!r.height) return;
+    const above = [...m.parentNode.querySelectorAll(".lgp-t, .lgp-b")].map((x) => x.getBoundingClientRect().bottom).filter((b) => b <= r.top);
+    const top = (((above.length ? Math.max(...above) : r.top - 48) + 16 - r.top) / r.height * 100).toFixed(2);
+    m.querySelectorAll("path[data-d]").forEach((x) => x.setAttribute("d", x.dataset.d.replaceAll("T", top)));
+  });
+}
 function scenesInit() {
   scenes = [...art.querySelectorAll("[data-s]")];
   tocBuild();
   if (seen) seen.disconnect();
   art.querySelectorAll("[data-in]").forEach((el) => { if (reduce || !seen) el.classList.add("in"); else seen.observe(el); });
   if (reduce || !wide.matches) art.querySelectorAll(".abp").forEach((el) => { el.dataset.step = "3"; });
-  sizeStrips();
+  fitLines();
+  document.fonts.ready.then(fitLines);
   onScroll();
 }
 
@@ -715,7 +728,7 @@ addEventListener("keydown", (e) => {
   else if (mode === "detail" && e.key === "Escape") rewindTop();
 });
 
-addEventListener("resize", () => { sizeStrips(); onScroll(); geo(); halt(); X = target = stop(goal); v = 0; draw(); });
+addEventListener("resize", () => { fitLines(); onScroll(); geo(); halt(); X = target = stop(goal); v = 0; draw(); });
 
 /* start: tape wound in, hook on the reading point, About showing */
 geo();
