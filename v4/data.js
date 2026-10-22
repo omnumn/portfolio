@@ -5,7 +5,7 @@ const C = "citi/n/";
 const W = "woktok/n/";
 const PROJECTS = [
   { id: "curious", name: "Curious", role: "Content design", c: "#03C124",
-    year: "2025-2026", contribution: "Design 100%", work: "Detail pages, ads, social content",
+    year: "2025-2026", contribution: "100%", work: "Detail pages, ads, social content",
     line: ["One design language for the detail pages, ads and social content of a knowledge-sharing platform for people in midlife."],
     body: [
       "Curious is a seed-stage startup for learners in their 40s to 60s. Its guidelines stopped at UI/UX: fonts and colors.",
@@ -275,7 +275,7 @@ const PROJECTS = [
       { t: "Brand Slogan", blocks: [
         // the slogan sits on the empty wall beside the poster, as in the PDF
         // as in the PDF: the slogan set in white on the poster's own photo
-        { over: true, say: [["Timeless", "Tradition,"], ["Inclusive", "Beauty"]], sub: "시대를 초월한 전통, 모두를 아우르는 아름다움", img: B + "poster.webp", pos: "60% 50%", alt: "The mandarin poster" },
+        { over: true, say: [["Timeless", "Tradition,"], ["Inclusive", "Beauty"]], img: B + "poster.webp", pos: "60% 50%", alt: "The mandarin poster" },
       ] },
       { t: "Key Visual", blocks: [
         // [title, text, x%, y%] on each poster

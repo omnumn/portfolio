@@ -1019,7 +1019,8 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .af-l, .af-d, .af-k { display: none; }
   .af-t { position: static; opacity: 1; transform: none; }
   .lgp-in { position: static; height: auto; padding: var(--g7) var(--g3); grid-template-columns: minmax(0, 1fr); }
-  .lgp-l, .lgp-r, .lgp-m, .lgp .lg-s { grid-column: 1 / -1; grid-row: auto; text-align: left; }
+  .lgp-l, .lgp-r, .lgp-m, .lgp-b, .lgp .lg-s { grid-column: 1 / -1; grid-row: auto; text-align: left; }
+  .lgp-b { justify-self: start; }
   .lgp-t, .lgp-o, .af-sw, .af-mn span { opacity: 1; transform: none; }
   .lgp-m .lgp-k { stroke-dashoffset: 0; }
   .af-sw { display: none; }
