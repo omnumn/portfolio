@@ -67,10 +67,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .who { position: absolute; left: 64px; top: 56px; font-size: var(--t5); letter-spacing: -0.01em; }
 .statement { position: absolute; left: 64px; right: 48px; bottom: 64px; font-size: var(--t6); line-height: 1.1; letter-spacing: -0.025em; }
 .statement .serif { padding-right: 0.06em; }
-/* the keys: one per project, side by side like a radio's band switches, sitting a title's gap above the statement.
+/* the keys: one per project, stacked in one column on the desktop (a row on a phone), a title's gap above the statement.
    Up = the case's grey; pointed at = the project's colour; the one being read stays down in its colour */
-.keys { position: absolute; left: 64px; bottom: calc(64px + 2.2 * var(--t6) + 48px); /* two lines of the statement */ display: flex; gap: var(--g0); }
-.keys button { width: 48px; height: 80px; /* tall keys, like a radio's band switches stood up */ border-radius: 4px; background-color: var(--hub);
+.keys { position: absolute; left: 64px; bottom: calc(64px + 2.2 * var(--t6) + 48px); /* two lines of the statement */ display: flex; flex-direction: column; gap: var(--g0); }
+.keys button { width: 64px; height: 40px; border-radius: 4px; background-color: var(--hub);
   transition: background-color var(--d2) var(--ease-out), scale var(--d3) var(--spring); }
 .keys button.is-on { background-color: var(--c); scale: 0.94; }
 
@@ -1078,4 +1078,4 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .af-sw { display: none; }
   .af-n .af-l, .af-k { transform: none; transition: none; }
 }
-@media (max-width: 960px) { .keys button { width: 48px; height: 40px; } } /* five keys still fit beside the 64 edge on a phone */
+@media (max-width: 960px) { .keys { flex-direction: row; } .keys button { width: 48px; } } /* five keys still fit beside the 64 edge on a phone */
