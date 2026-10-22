@@ -558,7 +558,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cn .face b, .cn .face-x { font-size: var(--t5); } /* two columns: the name one step down so it holds its lines */
 
 /* a/b test: the loop on the tape. Each stop fills in turn, joined by a line that draws */
-.rdm { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.rdm { list-style: none; display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 24px; } /* rule-ok: one column per stage, as many as the stages (like chart bars) */
 .rdm li { position: relative; padding-top: 48px; }
 .rdm i { position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink); background: var(--bg);
   transition: background-color var(--d2) var(--ease-out) calc(var(--i) * 360ms + 240ms), box-shadow var(--d2) var(--ease-out) calc(var(--i) * 360ms + 240ms); }
@@ -566,7 +566,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   transform: scaleX(0); transform-origin: left; transition: transform var(--d3) var(--ease-out) calc(var(--i) * 360ms + 360ms); }
 .rdm.in i { background: var(--pc); box-shadow: inset 0 0 0 2px var(--pc); }
 .rdm.in li::before { transform: none; }
-.rdm li:nth-child(3) b { color: var(--sub); }
+.abp .rdm li:nth-child(3) b { color: var(--sub); } /* the ad that was cut */
 .rdm b { display: block; font-size: var(--t5); font-weight: 400; letter-spacing: -0.01em; }
 .rdm p { margin-top: var(--g1); font-size: var(--t2); line-height: 1.5; color: var(--sub); }
 
@@ -893,6 +893,20 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cp-p span { display: block; margin-top: var(--g0); font-size: var(--t2); color: var(--sub); font-variant-numeric: tabular-nums; }
 .cp-m b { font-size: var(--t6); letter-spacing: -0.025em; }
 .cp-m span { font-size: var(--t3); }
+/* a set with no lead color: four across under its label */
+.cp-k { grid-column: 1 / -1; }
+.cp.four .cp-r { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* item symbols: each group three across (a group of four two by two), names under the shapes */
+.sy { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g3); align-items: start; }
+.sy-g { grid-column: span 3; }
+.sy-g ul { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--g4) var(--g2); margin-top: var(--g4); }
+.sy-g[data-k="2"] li:nth-child(3) { grid-column: 1; }
+.sy li { display: flex; flex-direction: column; align-items: center; gap: var(--g1); text-align: center;
+  opacity: 0; transform: translateY(var(--g2)); transition: opacity var(--d2) var(--ease-out) calc(var(--i) * 80ms), transform var(--d3) var(--spring) calc(var(--i) * 80ms); }
+.sy-g.in li { opacity: 1; transform: none; } /* each group on its own: stacked on a phone, the set is too tall to be seen at once */
+.sy img { width: 100%; aspect-ratio: 1; }
+.sy span { font-size: var(--t1); line-height: 1.3; color: var(--sub); }
 
 /* a picture to the screen's edges: no rounding, its notes kept on the page column */
 .bk.co.full > .co-c:first-child { grid-column: 1 / -1; }
@@ -1010,7 +1024,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .lg-v { gap: var(--g3); }
   .ics img { width: 100%; }
   .lg-n > :first-child, .lg-n > :last-child, .lg-n > :nth-child(2), .say, .sl-f, .tf-f, .tf-l, .cp-m, .cp-r { grid-column: 1 / -1; }
-  .lg, .lg-n, .sl, .tf, .cp { grid-template-columns: minmax(0, 1fr); }
+  .lg, .lg-n, .sl, .tf, .cp, .sy { grid-template-columns: minmax(0, 1fr); }
+  .cp.four .cp-r { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sy-g { grid-column: 1 / -1; }
+  .sy { gap: var(--g6); }
   .lg-s { justify-self: stretch; flex-direction: column; align-items: flex-start; gap: var(--g4); }
   .lg-s li { flex-direction: column; align-items: flex-start; gap: var(--g1); }
   .say { font-size: var(--t7); }
@@ -1046,7 +1063,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .bk.co.big > .co-sl, .bk.co.big > .co-sr { grid-column: 1 / -1; width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sv-l i::after, .ap-b, .lg-g, .lg-w, .lg-z, .lg-sf > img, .lg-v img, .say i, .sl-f, .tf-f, .tf-l li, .ics img, .cp-i, .cp-s > i, .svc-i > img, .svc-p, .prc-c { transition: none; }
+  .sv-l i::after, .ap-b, .lg-g, .lg-w, .lg-z, .lg-sf > img, .lg-v img, .say i, .sl-f, .tf-f, .tf-l li, .ics img, .cp-i, .cp-s > i, .svc-i > img, .svc-p, .prc-c, .sy li { transition: none; }
   .af, .lgp { height: auto; }
   .af-in, .lgp-in { position: static; height: auto; }
   .lgp-in { padding-block: var(--g8); }

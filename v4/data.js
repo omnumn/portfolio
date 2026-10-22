@@ -3,6 +3,7 @@ const N = "curious/n/"; // the separated Curious assets
 const B = "banilaco/n/";
 const C = "citi/n/";
 const W = "woktok/n/";
+const DR = "dar/n/";
 const PROJECTS = [
   { id: "curious", name: "Curious", role: "Content design", c: "#03C124",
     year: "2025-2026", contribution: "100%", work: "Detail pages, ads, social content",
@@ -309,6 +310,72 @@ const PROJECTS = [
         // cropped to the product, so the pair reads as one row
         { imgs: [[B + "tube.webp", "4 / 5"], [B + "package.webp", "4 / 5"]], alt: "The peeling gel tube and its box" },
         { zoom: B + "box.webp", ratio: "16 / 9", alt: "Banilaco shipping boxes" },
+      ] },
+    ] },
+  { id: "dar", name: "Dar", role: "Brand design", c: "#747D55", // Born, the first of Dar's main colors
+    year: "2023", contribution: "Brand identity 80%, brand experience 70%, key visual 100%, mockups 100%", work: "Logo, item symbols, posters, signage, packaging",
+    line: ["A gardening select shop that turns what you desire into seeds, and the tools to grow them."],
+    body: null, nums: null,
+    shots: [["dar/n/poster.webp", ""]], hero: "4 / 3",
+    // a team project (5 people, I led it) that I retouched on my own; from the Figma file, in its order. Nothing added that the file does not say
+    flow: [
+      { t: "Brand Overview", blocks: [
+        { notes: [["Dar?", "An online and offline gardening select shop that helps plants and people grow together, seeing a plant's growth as a person's."],
+                  ["For", "People whose plants keep dying, or who only follow flowers grown by others. Dar finds the seed that suits you and stays beside you as it grows."]] },
+        // the five stages of growth, lit one after another along the line
+        { road: [["Discover", "Find your potential."], ["Plant", "Plant it in the vessel that is you."], ["Grow", "Grow at your own pace, your own way."],
+                 ["Bear", "Bear fruit as yourself, not as what others want."], ["Reach out", "Reach higher than before."]] },
+        { open: DR + "plant.webp", ratio: "2400 / 1600", alt: "A tomato plant growing from a blue pot" },
+      ] },
+      { t: "Design & Service Concept", i: "Dar never tells you which seed you'll get. It listens, then hands you a possibility.", blocks: [
+        { values: [["Seek", "Find what you truly desire", "Dark / unique"],
+                   ["Immerse", "Focus on yourself", "Simple / symbolic"],
+                   ["Reach", "Grow to your limit", "Expanding / modern"]] },
+      ] },
+      { t: "Brand Slogan", i: "A story is dull when you already know the ending. You plant, and see what grows.", blocks: [
+        { over: true, say: [["plant your Desire,", "harvest your Ambitions,"], ["grow beyond your Reach"]], img: DR + "soil.webp", pos: "50% 50%", alt: "A hand sowing seeds into soil" /* flipped as in the work */ },
+      ] },
+      { t: "Logo Design", blocks: [
+        { logo: { mark: DR + "logo.svg", ratio: "703 / 163", cols: 8, alt: ["", "The Dar logo"],
+                  notes: [["Dar", "Spanish for ‘to give’. A word with many meanings, depending on the moment."],
+                          ["Two meanings", "**A special experience for everyone, and a different seed for each person.**"]] } },
+      ] },
+      { t: "Typeface", blocks: [
+        { typeon: { img: DR + "posters.webp", pos: "50% 40%", alt: "Dar posters on a wall",
+                    faces: [["Korean", "S-Core Dream", "", DR + "scdream.png", "Nine weights. Like one plant taking a different shape in different soil, it fits every setting."],
+                            ["English", "Thunder LC", "", DR + "thunder.png", "Long, tight letters like sprouts pushing up, chosen to reach for the sky. Many weights, so it works anywhere."]] } },
+      ] },
+      { t: "Brand Color", i: "From the moment a seed lies in the ground, through growing stronger, to the last bloom.", blocks: [
+        { sub: "Main Color", tokens: { rest: [["Born", "#747D55", DR + "c-born.webp"], ["Getting Stronger", "#1D221B", DR + "c-stronger.webp"],
+                                              ["Below Ground", "#0A0A0A", DR + "c-ground.webp"], ["First Light", "#F4F8F4", DR + "c-light.webp"]] } },
+        { sub: "Point Color", tokens: { rest: [["Cherish", "#EA0046", DR + "c-cherish.webp"], ["Soothe", "#FFBBCF", DR + "c-soothe.webp"],
+                                               ["Lively", "#FFA63E", DR + "c-lively.webp"], ["Delight", "#F9F871", DR + "c-delight.webp"]] } },
+      ] },
+      { t: "Item Symbol", i: "Seeds come from a survey. Each seed's symbol keeps its plant a secret until it grows.", blocks: [
+        // one symbol per item, in the board's own rows
+        { sym: [["Seed", [1, 4, 7, 2, 5, 8, 3, 6, 9].map((n) => [DR + "s-seed-" + n + ".svg", "???"])],
+                ["Pot", [[1, "Plastic"], [4, "Onggi"], [2, "Ceramic"], [3, "Terracotta"]].map(([n, k]) => [DR + "s-pot-" + n + ".svg", k])],
+                ["Soil", [[4, "Peat"], [5, "Coco peat"], [7, "Peat moss"], [2, "Decomposed granite"], [3, "Perlite"], [8, "Potting mix"], [1, "Rice hull charcoal"], [6, "Volcanic stone"], [9, "Orchid pumice"]].map(([n, k]) => [DR + "s-soil-" + n + ".svg", k])],
+                ["Gardening Tools", [[3, "Pointed trowel"], [4, "Round trowel"], [7, "Weeding knife"], [1, "Spray bottle"], [5, "Four-prong rake"], [8, "Gloves"], [2, "Plant food"], [6, "Three-prong rake"], [9, "Pruning shears"]].map(([n, k]) => [DR + "s-tool-" + n + ".svg", k])]] },
+      ] },
+      { t: "Building Configuration", i: "Three floors that grow brighter on the way up, like a seed breaking through the soil.", blocks: [
+        { cards: [[DR + "floor-1.webp", "F1", "Seek out potentiality", "A survey matches you with a seed and a guide. Then pick its soil and pot.", "4 / 5"],
+                  [DR + "floor-2.webp", "F2", "Ready for growth", "Trowels, watering cans, gloves: as many tools as you want for what you planted.", "4 / 5"],
+                  [DR + "floor-3.webp", "F3", "Out to the world", "A café of books, stationery and Dar goods, where you check out.", "4 / 5"]] },
+      ] },
+      { t: "Applications", blocks: [
+        { open: DR + "sign.webp", ratio: "16 / 9", alt: "A Dar standing sign by the entrance" },
+        { imgs: [[DR + "seeds.webp", "1410 / 1500"], [DR + "jars.webp", "1089 / 1600"]], alt: "Seed envelopes and soil jars on the first floor" },
+        { imgs: [[DR + "shop.webp", "1200 / 1600"], [DR + "boxes.webp", "2000 / 1500"]], alt: "Tools on the second floor and their boxes" },
+        { imgs: [[DR + "notebook.webp", "2000 / 1667"], [DR + "shelf.webp", "2000 / 1200"]], alt: "A Dar notebook and the third-floor shelves" },
+      ] },
+      { t: "Receipt", i: "Each receipt ends on ‘your one and only symbol from Dar’, stacked from what you bought.", blocks: [
+        { zoom: DR + "receipts.webp", ratio: "2400 / 1403", alt: "Three Dar receipts" },
+      ] },
+      { t: "Brand Guidelines", i: "The team's guidelines before the retouch, shown with real goods at a school exhibition.", blocks: [
+        { lane: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((n) => DR + "g-" + String(n).padStart(2, "0") + ".webp"), ratio: "16 / 9", dir: 1, alt: "Dar brand guideline pages" },
+        { lane: [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25].map((n) => DR + "g-" + n + ".webp"), ratio: "16 / 9", dir: -1, alt: "Dar brand guideline pages" },
+        { fine: "A study sketch combining design references and resources, not for commercial use. All images belong to their original creators." },
       ] },
     ] },
   { id: "woktok", name: "Woktok", role: "Product design", c: "#F34242", ink: "#F34242", // the brand's emotion red, by the owner's choice

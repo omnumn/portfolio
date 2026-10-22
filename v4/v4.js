@@ -239,7 +239,7 @@ function block(b) {
     return `<div class="bk cn"><div><b class="cn-h">${c.h}</b><p>${c.t}</p></div><figure>${pic(c.img, c.alt, c.ratio)}</figure>${face(c.font)}</div>`;
   }
   // the test loop on the tape: each stop lights up in turn, joined by a line that draws
-  if (b.road) return `<ol class="bk rdm" data-in>${b.road.map(([h, t], i) => `<li style="--i:${i}"><i></i><b>${h}</b><p>${t}</p></li>`).join("")}</ol>`;
+  if (b.road) return `<ol class="bk rdm" data-in style="--n:${b.road.length}">${b.road.map(([h, t], i) => `<li style="--i:${i}"><i></i><b>${h}</b><p>${t}</p></li>`).join("")}</ol>`;
   // caption: the machine's output is the picture; each part of the caption is pointed at
   if (b.caption) {
     const c = b.caption;
@@ -330,8 +330,15 @@ function block(b) {
   // each color as a circle laid over a circle of the fruit it came from, the same size, just overlapping
   if (b.tokens) {
     const pair = ([n, h, f], i) => `<div class="cp-p" style="--i:${i}"><div class="cp-s"><div class="cp-i">${pic(f, n)}</div><i style="background:${h}"></i></div><b>${n}</b><span>${h}</span></div>`;
+    // no lead color: the set runs four across under its own label
+    if (!b.tokens.main) return `<div class="bk cp four" data-in>${b.sub ? `<p class="sg cp-k">${b.sub}</p>` : ""}<div class="cp-r">${b.tokens.rest.map((x, i) => pair(x, i)).join("")}</div></div>`;
     return `<div class="bk cp" data-in><div class="cp-m">${pair(b.tokens.main, 0)}</div><div class="cp-r">${b.tokens.rest.map((x, i) => pair(x, i + 1)).join("")}</div></div>`;
   }
+  // item symbols in their groups, three across as on the board; a group of four sits two by two
+  if (b.sym) return `<div class="bk sy">${b.sym.map(([k, items]) => `<div class="sy-g" data-in${items.length === 4 ? ' data-k="2"' : ""}><p class="sg">${k}</p>
+    <ul>${items.map(([f, n], i) => `<li style="--i:${i}"><img src="${img(f)}" alt="${n === "???" ? "A secret seed" : n}"><span>${n}</span></li>`).join("")}</ul></div>`).join("")}</div>`;
+  // a small line at the very end, such as where the images come from
+  if (b.fine) return `<div class="bk"><p class="op-n">${b.fine}</p></div>`;
   return `<div class="bk">${inner(b)}</div>`;
 }
 const RW_LEN = 22; // seconds of reel the tape shows: the last cut starts at 20s
