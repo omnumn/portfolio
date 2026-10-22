@@ -358,13 +358,14 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .dr img { object-fit: contain; }
 
 /* 05 thumbnail & detail page: two columns that move against each other */
-.duo { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: start; }
-.duo > div { will-change: transform; }
-.duo-0 { grid-column: 1 / 6; }
-.duo-1 { grid-column: 7 / 13; margin-top: 64px; }
-.duo-p { display: flex; gap: 16px; margin-bottom: 32px; }
-.duo-p .im { flex: 1; }
-.duo-1 .im { background: none; border-radius: 0; }
+/* two pairs, staggered: each phone with its own note beside it, set on the phone's lower edge */
+.duo { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g3); align-items: start; }
+.duo > div { will-change: transform; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: var(--g3); align-items: end; }
+.duo-0 { grid-column: 1 / 7; }
+.duo-1 { grid-column: 7 / 13; margin-top: var(--g8); }
+.duo-p { grid-column: 1 / 4; display: flex; }
+.duo-p .im { flex: 1; background: none; border-radius: 0; }
+.duo-t { grid-column: 4 / 7; padding-bottom: var(--g5); }
 
 /* 06 detail page, part by part: the page runs up behind a reading line; the part on the line is told beside it */
 .rd { height: 720vh; } /* the page moves about as fast as you scroll */
@@ -708,7 +709,11 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 @media (max-width: 960px) {
   .spl > *, .spl > :first-child, .spl > :last-child, .spl > :first-child:empty + div, .duo > div { grid-column: 1 / -1; }
-  .duo-1 { margin-top: 0; }
+  .duo-1 { margin-top: var(--g6); }
+  .duo > div { grid-template-columns: minmax(0, 1fr); row-gap: var(--g4); }
+  .duo-p, .duo-t { grid-column: 1 / -1; }
+  .duo-p { margin-inline: var(--g4); }
+  .duo-t { padding-bottom: 0; }
   .sx, .ph, .gn, .fo, .cn, .rdm { grid-template-columns: minmax(0, 1fr); }
   .vn { flex-direction: column; align-items: center; }
   .cap-l, .cap .bk.co { grid-column: 1 / -1; }

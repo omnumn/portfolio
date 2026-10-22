@@ -192,7 +192,7 @@ function block(b) {
     <figure class="co-f" data-in${c.crop ? "" : ` style="aspect-ratio:${c.w} / ${c.h}"`}>${c.crop ? `<div class="co-i" style="aspect-ratio:${c.w} / ${c.h}"><img src="${img(c.img)}" alt="${c.alt}" loading="lazy" style="transform:scale(${c.crop[0]});transform-origin:${c.crop[1]}"></div>`
       : c.extend ? `<div class="co-i co-x" style="aspect-ratio:${c.w} / ${c.h};background:${c.extend}"><img src="${img(c.img)}" alt="${c.alt}" loading="lazy"></div>` : pic(c.img, c.alt)}
     ${c.notes.map(([h, t, x, y, sw, s, at], i) => `<div class="co-n${s ? " " + s : ""}" style="--x:${x}%;--y:${y}%;--i:${i}${at != null ? `;--s:${at}%` : ""}"><i class="co-l"></i><i class="co-d"></i><div class="co-t"><b>${h}</b>${t ? `<p>${t}</p>` : ""}${sw ? `<span class="chip"><i style="background:${sw[1]}"></i>${sw[0] === sw[1] || !sw[1].startsWith("#") ? sw[0] : `${sw[0]} ${sw[1]}`}</span>` : ""}</div></div>`).join("")}</figure></div>`).join("")}</div>`;
-  if (b.duo) return `<div class="bk duo" data-s="view" data-k="duo">${b.duo.map((x, i) => `<div class="duo-${i}">${pics(x.imgs, x.alt)}${inner({ sub: x.sub, text: x.text, pills: x.pills })}</div>`).join("")}</div>`;
+  if (b.duo) return `<div class="bk duo" data-s="view" data-k="duo">${b.duo.map((x, i) => `<div class="duo-${i}">${pics(x.imgs, x.alt)}<div class="duo-t">${inner({ sub: x.sub, text: x.text, pills: x.pills })}</div></div>`).join("")}</div>`;
   if (b.reader) {
     const r = b.reader;
     return `<div class="bk rd" data-s="pin" data-k="reader" data-end="${r.end || 1}" data-at="${r.notes.map((x, i) => x[2] ?? i / r.notes.length).join(",")}">

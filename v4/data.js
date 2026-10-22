@@ -47,8 +47,9 @@ const PROJECTS = [
       ] },
       { g: "Mini class", t: "Thumbnail & Detail Page", blocks: [
         { duo: [
-          { imgs: [["curious/lecture-sq.webp", "1 / 1"]], alt: "Mini class thumbnail", sub: "Thumbnail", text: "The face comes before the title.", pills: ["Person first", "Less info", "One tone"] },
-          { imgs: [[N + "new-1.webp", "638 / 1292"], [N + "new-2.webp", "638 / 1292"]], alt: "The new detail page", sub: "Detail Page", text: "Images instead of a wall of facts.", pills: ["Image-led", "More info", "Easier to read"] },
+          // the thumbnail is the top of the page itself, so each phone carries its own note
+          { imgs: [[N + "new-1.webp", "638 / 1292"]], alt: "The new detail page, opening on the thumbnail", sub: "Thumbnail", text: "The face comes before the title.", pills: ["Person first", "Less info", "One tone"] },
+          { imgs: [[N + "new-2.webp", "638 / 1292"]], alt: "The new detail page, key points", sub: "Detail Page", text: "Images instead of a wall of facts.", pills: ["Image-led", "More info", "Easier to read"] },
         ] },
       ] },
       { g: "Mini class", t: "Detail Page, Part by Part", blocks: [
