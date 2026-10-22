@@ -323,7 +323,7 @@ const PROJECTS = [
                  ["Endemic", "Owners went back to their routines. Their dogs were left with the blues."],
                  ["City", "Short on time and space, most walks shrank to the same quick loop."]] },
         // kept whole: the dog's paws and the owner's wrist both show
-        { open: W + "walk.webp", ratio: "2000 / 1342", alt: "A dog on a walk in the city" },
+        { open: W + "walk.webp", ratio: "2000 / 1342", alt: "A dog on a walk in the city", note: "Image generated with AI." },
       ] },
       { t: "Overview", i: "Woktok reads a walk from the dog's side, not the owner's.", blocks: [
         // [as-is, what it means, to-be, what it means]
@@ -399,7 +399,7 @@ const PROJECTS = [
         { icons: W + "togu.svg", ratio: "730 / 319", alt: "Togu chasing a ball" },
       ] },
       { t: "Applications", i: "The walk set and goods were made and shown at an exhibition. Visitors tried the prototype and the app; stickers and keyrings sold through funding during the show.", blocks: [
-        // three at one size; the exhibition table kept whole
+        // one height; the exhibition table kept whole, so it runs a little narrower
         { imgs: [[W + "tote.webp", "1 / 1"], [W + "keyrings.webp", "1 / 1"], [W + "display.webp", "1135 / 1046"]], alt: "The Woktok tote bag, Togu keyrings and the exhibition table" },
       ] },
     ] },

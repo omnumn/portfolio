@@ -173,13 +173,18 @@ function inner(b) {
     return `<div class="tm" data-in>${sub(t.k)}${t.rows.map(([l, v]) => `<div class="tm-r"><div class="tape-s" style="--w:${v / t.max}">${ticks(t.max)}<i></i></div><span>${l}</span></div>`).join("")}
       <div class="st one"><div><b>${t.d}</b><span>${t.dk}</span></div></div></div>`;
   }
-  if (b.imgs) return pics(b.imgs, b.alt);
+  // photos side by side at one height: each takes width by its ratio, so one of another ratio is kept whole
+  if (b.imgs) return `<div class="bk ims">${b.imgs.map(([f, r]) => `<div class="im" style="--r:${r.split("/").reduce((w, h) => w / h)}">${pic(f, b.alt, r)}</div>`).join("")}</div>`;
   let s = sub(b.sub) + (b.text ? `<p class="tx">${b.text}</p>` : "") + pills(b.pills);
   if (b.grow) { const m = Math.max(...b.grow.map((g) => g[1])); s += `<div class="gr" data-in>${b.grow.map(([l, v]) => `<div class="tape-s" style="--w:${v / m}">${ticks(6)}<i></i><span>${l}</span></div>`).join("")}</div>`; }
   return s;
 }
 function block(b) {
-  if (b.open) return `<figure class="bk bleed op" data-s="view" data-k="open"${b.pos ? ` style="--pos:${b.pos}"` : ""}><div class="im" style="aspect-ratio:${b.ratio}">${pic(b.open, b.alt)}</div></figure>`;
+  if (b.open) {
+    const f = `<figure class="bk bleed op" data-s="view" data-k="open"${b.pos ? ` style="--pos:${b.pos}"` : ""}><div class="im" style="aspect-ratio:${b.ratio}">${pic(b.open, b.alt)}</div></figure>`;
+    // a note under the photo (e.g. that it was made with AI) stays in the text column, not out at the bleed
+    return b.note ? `<div class="bk">${f}<p class="op-n">${b.note}</p></div>` : f;
+  }
   if (b.drift) return `<figure class="bk bleed dr" data-s="view" data-k="drift"><div style="aspect-ratio:${b.ratio}">${pic(b.drift, b.alt)}</div></figure>`;
   if (b.zoom) return `<figure class="bk zm" data-s="view" data-k="zoom"><div class="im" style="aspect-ratio:${b.ratio}">${pic(b.zoom, b.alt)}</div></figure>`;
   if (b.split) return `<div class="bk spl">${b.split.map((x) => `<div>${inner(x)}</div>`).join("")}</div>`;

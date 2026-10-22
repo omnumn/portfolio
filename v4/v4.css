@@ -902,6 +902,12 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* a crop point for an opening picture */
 .op .im img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
+.op-n { margin-top: var(--g2); font-size: var(--t1); color: var(--sub); }
+/* photos side by side (imgs): one row at one height, the usual column gap and corners */
+.ims { display: flex; gap: var(--g3); align-items: start; }
+.ims > .im { flex: var(--r) 1 0; }
+.ims img { width: 100%; }
+@media (max-width: 960px) { .ims { flex-direction: column; } .ims > .im { flex: none; } }
 
 /* slogan over its picture, as the work itself sets it */
 .sov { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
