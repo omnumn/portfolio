@@ -10,7 +10,7 @@ const app = $("#app"), caseEl = $("#case"), hub = $("#hub"), hubI = hub.querySel
 const rail = $("#rail"), tape = $("#tape"), pull = $("#pull");
 const over = $("#over"), detail = $("#detail"), art = $("#art"), mini = $("#mini"), snd = $("#snd"), cue = $("#cue");
 
-const LEN = 4000;
+const LEN = 8000; // long enough that, read at the last project, the tape still runs off the left edge of a wide screen
 // marks are 10 × 64 apart, so only one shows beside the case. The first sits far enough from the hook
 // that the hook stays off screen even when the case has gone and the tape is read from the middle
 let D = [];

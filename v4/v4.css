@@ -82,7 +82,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* the tape: runs under the case. Ticks counted from the hook: long every 64, short every 32 */
 .rail { position: fixed; left: 0; right: 0; top: 0; height: 0; z-index: 4; pointer-events: none; will-change: transform; }
-.tape { position: absolute; left: 0; top: var(--ty); width: 4000px; height: var(--tw); will-change: transform;
+.tape { position: absolute; left: 0; top: var(--ty); width: 8000px; /* = LEN in v4.js */ height: var(--tw); will-change: transform;
   border-block: 1px solid var(--line);
   background:
     repeating-linear-gradient(to left, var(--ink) 0 1px, transparent 1px 64px) right top / 100% 20px no-repeat,

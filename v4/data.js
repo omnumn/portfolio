@@ -313,7 +313,7 @@ const PROJECTS = [
       ] },
     ] },
   { id: "dar", name: "Dar", role: "Brand design", c: "#747D55", // Born, the first of Dar's main colors
-    year: "2023", contribution: "Brand identity 80%, brand experience 70%, key visual 100%, mockups 100%", work: "Logo, item symbols, posters, signage, packaging",
+    year: "2024", contribution: "Brand identity 80%, brand experience 70%, key visual 100%, mockups 100%", work: "Logo, item symbols, posters, signage, packaging",
     line: ["A gardening select shop that turns what you desire into seeds, and the tools to grow them."],
     body: null, nums: null,
     shots: [["dar/n/poster.webp", ""]], hero: "4 / 3",
