@@ -67,6 +67,12 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .who { position: absolute; left: 64px; top: 56px; font-size: var(--t5); letter-spacing: -0.01em; }
 .statement { position: absolute; left: 64px; right: 48px; bottom: 64px; font-size: var(--t6); line-height: 1.1; letter-spacing: -0.025em; }
 .statement .serif { padding-right: 0.06em; }
+/* the keys: one per project, side by side like a radio's band switches, sitting a title's gap above the statement.
+   Up = the case's grey; pointed at = the project's colour; the one being read stays down in its colour */
+.keys { position: absolute; left: 64px; bottom: calc(64px + 2.2 * var(--t6) + 48px); /* two lines of the statement */ display: flex; gap: var(--g0); }
+.keys button { width: 64px; height: 40px; border-radius: 4px; background-color: var(--hub);
+  transition: background-color var(--d2) var(--ease-out), scale var(--d3) var(--spring); }
+.keys button.is-on { background-color: var(--c); scale: 0.94; }
 
 /* the hub: turns as the tape moves. Outline when wound in, filled when tape is out. Press to rewind */
 .hub { position: absolute; right: 48px; top: 48px; width: 88px; height: 88px; border-radius: 50%; border: 1.5px solid var(--ink-sub);
@@ -97,15 +103,6 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   box-shadow: inset 0 0 0 2.5px var(--ink); transform: scale(0.6); /* not chosen: a 12px ring, 1.5px line once scaled */
   transition: transform var(--d2) var(--ease-out), background-color var(--d2) var(--ease-out), box-shadow var(--d2) var(--ease-out); }
 .mk.is-on i { transform: scale(1); background-color: var(--c); box-shadow: inset 0 0 0 0 var(--c); }
-
-/* the jump row: one dot per project in the lower half of the tape, fixed while the tape runs.
-   Same token as a mark: a ring when not chosen, filled in the project's colour while it is read */
-.jump { position: absolute; right: 64px; top: calc(var(--ty) + 36px); display: flex; pointer-events: auto; }
-.jump button { position: relative; width: 40px; height: 40px; }
-.jump button::before { content: ""; position: absolute; left: 10px; top: 10px; width: 20px; height: 20px; border-radius: 50%; background-color: transparent;
-  box-shadow: inset 0 0 0 2.5px var(--ink); transform: scale(0.6); /* 12px ring, 1.5px line once scaled, as .mk i */
-  transition: transform var(--d2) var(--ease-out), background-color var(--d2) var(--ease-out), box-shadow var(--d2) var(--ease-out); }
-.jump button.is-on::before { transform: scale(1); background-color: var(--c); box-shadow: inset 0 0 0 0 var(--c); }
 
 /* the pull hint: a faint arrow just past the hook, moving the way the tape should go */
 .pull { position: absolute; left: 0; top: calc(var(--ty) + var(--tw) / 2 - 24px); width: 112px; height: 48px; pointer-events: auto; transition: opacity var(--d2) var(--ease-out), scale var(--d3) var(--spring); }
@@ -205,7 +202,7 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* name and line on the left, Year / Contribution / Work on the right where the page is wide */
 .over { container-type: inline-size; }
-.ov-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 48px; } /* rule-ok: the home screen is the device */
+.ov-top { display: grid; grid-template-columns: minmax(40%, 1fr) auto; /* the line keeps at least 40%: long facts wrap instead (Dar) */ align-items: end; column-gap: 48px; } /* rule-ok: the home screen is the device */
 .a-top { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; column-gap: var(--g3); }
 .a-top > :first-child { grid-column: 1 / 8; }
 .a-top > :last-child { grid-column: 8 / 13; justify-self: end; }
@@ -1081,3 +1078,4 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .af-sw { display: none; }
   .af-n .af-l, .af-k { transform: none; transition: none; }
 }
+@media (max-width: 960px) { .keys button { width: 48px; } } /* five keys still fit beside the 64 edge on a phone */

@@ -34,16 +34,16 @@ const marks = PROJECTS.map((p, i) => {
   tape.appendChild(m);
   return m;
 });
-// the same projects as a row of dots on the tape: no names, the order says which is which
-const jumps = PROJECTS.map((p, i) => {
+// the same projects as a row of keys on the case: no names, the order says which is which
+const keys = PROJECTS.map((p, i) => {
   const b = document.createElement("button");
   b.type = "button";
   b.className = "press";
   b.style.setProperty("--c", p.c);
   b.setAttribute("aria-label", p.name);
   b.setAttribute("aria-pressed", "false");
-  b.addEventListener("click", () => go(i, PULL));
-  $("#jump").appendChild(b);
+  b.addEventListener("click", () => { if (i !== active) clack(); go(i, PULL); }); // the key latches: click on the way down, clack as it locks
+  $("#keys").appendChild(b);
   return b;
 });
 
@@ -154,7 +154,7 @@ function show(i) {
   active = i;
   app.dataset.at = i < 0 ? "about" : "work";
   marks.forEach((m, k) => m.classList.toggle("is-on", k === i));
-  jumps.forEach((b, k) => { b.classList.toggle("is-on", k === i); b.setAttribute("aria-pressed", k === i); });
+  keys.forEach((b, k) => { b.classList.toggle("is-on", k === i); b.setAttribute("aria-pressed", k === i); });
   if (i < 0) return;
   const p = PROJECTS[i];
   // same order as the detail: name, line, facts, then the picture
@@ -691,7 +691,7 @@ function resist(raw) {
 }
 let drag = null, moved = false;
 app.addEventListener("pointerdown", (e) => {
-  if (mode === "detail" || e.button !== 0 || e.target.closest("#hub, #snd, #mini, #cue, #jump, .about a")) return;
+  if (mode === "detail" || e.button !== 0 || e.target.closest("#hub, #snd, #mini, #cue, #keys, .about a")) return;
   drag = { id: e.pointerId, x: e.clientX, raw: X, t: performance.now(), vel: 0 };
   moved = false;
 });
